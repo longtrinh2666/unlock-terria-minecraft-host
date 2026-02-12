@@ -1,2 +1,3 @@
 #!/bin/bash
-export PATH="$PATH:/home/container/usr/bin" && proot -S debian -l /bin/bash --rcfile <(echo "export PS1=\"\[\e[1;33m\]root@lemehost\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\\$ \" ; export PATH=\"\$PATH:/home/container/usr/bin\"; clear") -i
+
+export PATH="$PATH:/home/container/usr/bin" && proot -S debian -l /bin/bash --rcfile <(echo "export PS1=\"\[\e[1;33m\]root~\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\\$ \" ; export PATH=\"\$PATH:/home/container/usr/bin\"; clear") -i
