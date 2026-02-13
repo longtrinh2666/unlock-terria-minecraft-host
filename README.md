@@ -1,4 +1,4 @@
-# Disclaimer!
+# Disclaimer !
 
 This project is provided for educational and experimental purposes only.
 
@@ -34,7 +34,7 @@ Use at your own risk.
 
 - step 3 : set startup code `bash /home/container/recovery/recovery.sh`
 
-- step 4 : start server if you see ":/home/container$ bash /home/container/recovery/debian.sh" press enter you will see "recovery-mod:~$"
+- step 4 : start server if you see ":/home/container$ bash /home/container/recovery/recovery.sh" press enter you will see "recovery-mod:~$"
 
 - step 5 : type `bash setup` and wait setup done
 
