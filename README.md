@@ -4,22 +4,10 @@
 
 -step 2 : upload upload recovery folder on soure to sever
 
--step 3 : set startup code like this: 
-
-'''"
-bash /home/container/recovery/recovery.sh
-'''
+-step 3 : set startup code `bash /home/container/recovery/recovery.sh`
 
 -step 4 : start server if you see ":/home/container$ bash /home/container/recovery/debian.sh" press enter you will see "recovery-mod:~$"
 
--step 5 : type code under and wait setup done
+-step 5 : type `bash setup` and wait setup done
 
-'''
-bash setup
-''' 
-
--step 6 : set startup code like this
-
-'''
-bash /home/container/recovery/debian.sh
-'''
+-step 6 : set startup code `bash /home/container/recovery/debian.sh`
