@@ -1,9 +1,0 @@
-#!/bin/bash
-/bin/bash -c "
-	chmod +x /home/container/recovery/debian.sh;
-    chmod +x /home/container/recovery/usr/bin/neofetch;
-    chmod +x /home/container/recovery/usr/bin/proot;
-    echo 'setup rootfs starting'
-    tar -xvf debian-rootfs-amd64.tar.xz -C /home/container;
-    echo -e "\e[1;32m done \e[0m";
-    exit"
