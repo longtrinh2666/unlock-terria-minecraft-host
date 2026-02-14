@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Define paths
+ROOTFS="/home/container"
+RECOVERY="/home/container/recovery"
+
+echo -e "\e[1;33m[+] Granting execution permissions to binaries...\e[0m"
+chmod +x $RECOVERY/debian.sh
+chmod +x $RECOVERY/usr/bin/neofetch
+chmod +x $RECOVERY/usr/bin/proot
+
+echo -e "\e[1;33m[+] Extracting Debian rootfs (amd64) to $ROOTFS...\e[0m"
+# Extracting directly from the recovery folder
+tar -xf $RECOVERY/debian-rootfs-amd64.tar.xz -C $ROOTFS
+
+echo -e "\e[1;33m[+] Applying environment isolation patches...\e[0m"
+
+# 1. Prevent services from starting on the host (Fixes invoke-rc.d errors)
+echo -e '#!/bin/sh\nexit 101' > $ROOTFS/usr/sbin/policy-rc.d
+chmod +x $ROOTFS/usr/sbin/policy-rc.d
+
+# 2. Fix UCF write permissions (Fixes libpaper1 and dpkg error code 1)
+mkdir -p $ROOTFS/var/lib/ucf/cache
+chmod -R 777 $ROOTFS/var/lib/ucf
+touch $ROOTFS/var/lib/ucf/hashfile
+
+# 3. Setup DNS resolver for immediate internet access
+echo "nameserver 8.8.8.8" > $ROOTFS/etc/resolv.conf
+echo "nameserver 1.1.1.1" >> $ROOTFS/etc/resolv.conf
+
+# 4. Dummy invoke-rc.d to bypass service manager checks
+if [ -f $ROOTFS/usr/sbin/invoke-rc.d ]; then
+    mv $ROOTFS/usr/sbin/invoke-rc.d $ROOTFS/usr/sbin/invoke-rc.d.bak
+fi
+echo -e '#!/bin/sh\nexit 0' > $ROOTFS/usr/sbin/invoke-rc.d
+chmod +x $ROOTFS/usr/sbin/invoke-rc.d
+
+# 5. Fix Perl Locale warnings
+echo "export LC_ALL=C" >> $ROOTFS/root/.bashrc
+
+echo -e "\e[1;32m[!] DEPLOYMENT SUCCESSFUL!\e[0m"
+echo -e "\e[1;36m[!] Launch your environment using: bash /home/container/recovery/debian.sh\e[0m"
