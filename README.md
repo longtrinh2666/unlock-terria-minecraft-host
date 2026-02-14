@@ -1,4 +1,4 @@
-# Disclaimer !
+# ⚠ Disclaimer ⚠
 
 This project is provided for educational and experimental purposes only.
 
@@ -22,11 +22,11 @@ The author of this project:
 
 Use at your own risk.
 
->NOTE
+>⚠ NOTE
 >
->This project does NOT change the kernel, does NOT increase RAM, and does NOT bypass host limits. It only creates a Debia environment inside an existing container.
+>This project does NOT change the kernel, does NOT increase RAM, and does NOT bypass host limits. It only creates a Debian environment inside an existing container.
 
-### how to use:
+## how to use:
 
 - step 1 : remove all file on server if your host has tab file
 
